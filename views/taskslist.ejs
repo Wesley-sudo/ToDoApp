@@ -1,0 +1,42 @@
+<div class="main-container">
+    <div class="notes-container">
+        <table class="table">
+            <thead class="thread">
+                <tr>
+                    <th id="note-status">Status</th>
+                    <th id="note-subject">Subject</th>
+                    <th id="note-description">Description</th>
+                    <th id="note-date">Date</th>
+                    <th id="note-time">Time</th>
+                    <th id="note-tags">Tags</th>
+                    <th>Edit/Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let task in tasks){ %>
+                    <tr>
+                        <% if (tasks[task]["status"] === false) { %>
+                            <td><input type="checkbox"></td> 
+                        <% } %>
+                        <% if (tasks[task]["status"]) { %>
+                            <td><input type="checkbox" checked></td> 
+                        <% } %>
+                        <td> <%= tasks[task]["subject"] %> </td>
+                        <td> <%= tasks[task]["description"] %> </td>
+                        <td> <%= tasks[task]["date"] %> </td>
+                        <td> <%= tasks[task]["time"] %> </td>
+                        <td> <%= tasks[task]["tag"] %> </td>
+                        <td class="edit-del">
+                            <div class="btn-update">
+                                <a href="/upd-task/<%=tasks[task]["_id"]%>"><svg viewbox="0 0 48 48" height="24" width="24"><path d="M9 39H11.2L35.45 14.75L34.35 13.65L33.25 12.55L9 36.8ZM6 42V35.6L35.4 6.2Q36.25 5.35 37.525 5.375Q38.8 5.4 39.65 6.25L41.8 8.4Q42.65 9.25 42.65 10.5Q42.65 11.75 41.8 12.6L12.4 42ZM39.5 10.45 37.45 8.4ZM35.45 14.75 34.35 13.65 33.25 12.55 35.45 14.75Z"/></svg></a>
+                            </div>
+                            <div class="btn-delete">
+                                <a href="/del-task/<%=tasks[task]["_id"]%>"><svg viewbox="0 0 48 48" height="24" width="24"><path d="M13.05 42Q11.85 42 10.95 41.1Q10.05 40.2 10.05 39V10.5H8V7.5H17.4V6H30.6V7.5H40V10.5H37.95V39Q37.95 40.2 37.05 41.1Q36.15 42 34.95 42ZM34.95 10.5H13.05V39Q13.05 39 13.05 39Q13.05 39 13.05 39H34.95Q34.95 39 34.95 39Q34.95 39 34.95 39ZM18.35 34.7H21.35V14.75H18.35ZM26.65 34.7H29.65V14.75H26.65ZM13.05 10.5V39Q13.05 39 13.05 39Q13.05 39 13.05 39Q13.05 39 13.05 39Q13.05 39 13.05 39Z"/></svg></a>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

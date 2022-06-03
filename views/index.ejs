@@ -1,0 +1,36 @@
+<%- include("header") -%>
+
+<div class="input-container">
+    <form action="/add-task" method="GET" enctype="multipart/form-data">
+        <div class="first-half">
+            <div>
+                <label for="subject">Subject:</label>
+                <input name="subject" id="subject" type="text">
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input name="date" id="date" type="text">
+            </div>
+            <div>
+                <label for="time">Time:</label>
+                <input name="time" id="time" type="text">
+            </div>
+            <div>
+                <label for="tag">Tags:</label>
+                <select name="tag" id="tag">
+                    <option value="Not Started">Not Started</option>
+                    <option value="Doing">Doing</option>
+                    <option value="Important">Important</option>
+                    <option value="Required">Required</option>
+                </select>
+            </div>
+        </div>
+        <div class="second-half">
+            <label for="description">Description:</label>
+            <input name="description" id="description" type="text" placeholder="Enter description here ...">
+            <button id="btn-add-task" type="submit">Add to Notes</button>
+        </div>
+    </form>
+</div>
+
+<%- include("taskslist") -%>
