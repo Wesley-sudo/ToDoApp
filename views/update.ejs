@@ -1,34 +1,59 @@
 <%- include("header") -%>
 
 <div class="input-container">
-    <form action="/add-task" method="GET" enctype="multipart/form-data">
+    <form action="/tasks/upd-task/<%= task["_id"] %> " method="POST"> 
         <div class="first-half">
+            <!-- User Input Subject Field for Updating Content -->
             <div>
                 <label for="subject">Subject:</label>
                 <input name="subject" id="subject" type="text" value="<%= task["subject"]%>">
             </div>
-            <div>
-                <label for="date">Date:</label>
-                <input name="date" id="date" type="text" value="<%= task["date"] %>">
+            <!-- User Input Date Field with Date Picker for Updating Content -->
+            <div class="datepicker-section">
+                <label for="targetDate">Date:</label>
+                <div name="targetDate" class='input-group date' id='datepicker'>
+                    <input type='text' name="targetDate" value="<%= task["targetDate"].toLocaleDateString() %>" class="form-control"/>
+                    <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
-            <div>
-                <label for="time">Time:</label>
-                <input name="time" id="time" type="text" value="<%= task["time"] %>">
+            <!-- User Input Time Field with Time Picker for Updating Content -->
+            <div class="timepicker-section">
+                <label for="targetTime">Time:</label>
+                <div class='input-group date' id='timepicker'>
+                    <input type='text' name="targetTime" value="<%= task["targetTime"] %>" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
             </div>
+            <!-- User Input Tag Field with Drop Down that makes sure previously selected tag is maintained -->
             <div>
                 <label for="tag">Tags:</label>
                 <select name="tag" id="tag" value="<%= task["tag"] %>">
-                    <option value="Not Started">Not Started</option>
-                    <option value="Doing">Doing</option>
-                    <option value="Important">Important</option>
-                    <option value="Required">Required</option>
+                    <option value="<%= task["tag"] %>"><%= task["tag"] %></option>
+                    <% if (task["tag"] !== "Not Started") { %>
+                         <option value="Not Started">Not Started</option>
+                    <% } %>
+                    <% if (task["tag"] !== "Doing") { %>
+                        <option value="Doing">Doing</option>
+                    <% } %>
+                    <% if (task["tag"] !== "Important") { %>
+                        <option value="Important">Important</option>
+                    <% } %>
+                    <% if (task["tag"] !== "Required") { %>
+                        <option value="Required">Required</option>
+                    <% } %>
                 </select>
             </div>
         </div>
+        <!-- User Input Description Field for Updating Content -->
         <div class="second-half">
             <label for="description">Description:</label>
             <input name="description" id="description" type="text" placeholder="Enter description here ..." value="<%= task["description"]%>">
-            <button id="btn-add-task" type="submit">Add to Notes</button>
+            <!-- Submit Button to Update Task in Database -->
+            <button id="btn-submit" type="submit">Update Task</button>
         </div>
     </form>
 </div>
